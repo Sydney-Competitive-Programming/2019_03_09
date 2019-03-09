@@ -1,0 +1,81 @@
+---
+title: "Syd Competitive Programming 2019 03 09"
+output:
+  html_document
+---
+
+```{r setup, include=FALSE, cache=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The leaderboard
+
+
+```{r summ1, message=FALSE, warning=FALSE, cache=TRUE, dependson=df, include=FALSE, paged.print=FALSE}
+library(data.table)
+library(dplyr)
+df = data.table::fread("data.csv")
+```
+
+```{r add_data, include=FALSE}
+library(data.table)
+library(magrittr)
+library(dplyr)
+df = data.table()
+
+num_attendees = 13
+
+add_solution <- function(df, name, prob, bytes, valid) {
+  rbindlist(
+    list(
+      df, 
+      data.table(name = name, prob = prob, bytes = bytes, valid=valid)), 
+      fill = F, use.names = T)
+};
+
+df %<>% 
+  add_solution("Michael Jones", 2, 437,T) %>% 
+  add_solution("Yiqun", 2, 261, T) %>% 
+  add_solution("Jennivine", 2, 199, T)
+
+df[,seq := 1:.N]
+
+df[, pts := 0L]
+df[, penalty := n_distinct(name), .(prob)]
+
+data.table::fwrite(df, "data_processed.csv")
+```
+
+```{r logic2, echo=FALSE}
+#
+score_submission <- function(probn) {
+  df2 = copy(df[prob == probn & valid == T,])
+
+  df2[order(seq), placing_penaly := 1:.N]
+  
+  df2[, pts := 2*num_attendees - penalty + 1 - placing_penaly]
+  df2
+}
+
+df_summ = purrr::map_dfr(1:3, ~{
+  score_submission(.x)
+})
+
+df_summ2 = df_summ[,.(pts = sum(pts)), name]
+
+data.table::fwrite(df_summ2, "data_processed_summ.csv")
+
+DT::datatable(df_summ2)
+```
+
+# Points by rank
+
+```{r plot, echo=FALSE, dependson=df_summ2, cache=FALSE}
+library(data.table)
+barplot(df_summ2$pts, names.arg = df_summ2$name)
+```
+
+# Points from first to submit
+```{r echo=FALSE}
+DT::datatable(df_summ2)
+```
