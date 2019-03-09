@@ -73,9 +73,38 @@ df_summ = purrr::map_dfr(1:3, ~{
 df_summ2 = df_summ[,.(pts = sum(pts)), name]
 
 data.table::fwrite(df_summ2, "data_processed_summ.csv")
-
-DT::datatable(df_summ2[order(pts, decreasing=T)])
 ```
+```{r code_golf, include=FALSE}
+golf_score = function(probn) {
+  df_g = df[(valid == T) & (prob == probn), ]
+  df_g[order(bytes), seq_golf := 1:.N]
+  
+  df_g2 = df_g
+  if(nrow(df_g) > 0) {
+    df_g[, min_seq_golf := min(seq_golf), name]
+    df_g2 = df_g[min_seq_golf == seq_golf, ]
+  }
+  
+  
+  df_g2[order(seq_golf), golf_placing_penaly := 1:.N]
+  df_g2[, pts_golf := 2*num_attendees - penalty + 1 - golf_placing_penaly]
+  df_g2[order(seq_golf),]
+}
+
+golf_scrs = purrr::map_dfr(1:3, ~golf_score(.x))
+golf_scrs[,.(name, pts_golf)]
+```
+
+```{r tot}
+golf_scrs2 = golf_scrs[,.(name, pts = pts_golf)]
+
+df_summ3 = rbindlist(list(df_summ2, golf_scrs2), fill = T, use.names = T)
+
+df_summ4 = df_summ3[,.(pts = sum(pts)), name]
+
+DT::datatable(df_summ4[order(pts, decreasing = T), ])
+```
+
 
 # Points by rank
 
@@ -87,4 +116,9 @@ barplot(df_summ2$pts, names.arg = df_summ2$name)
 # Points from first to submit
 ```{r echo=FALSE}
 DT::datatable(df_summ2)
+```
+
+# Points from golf
+```{r echo=FALSE}
+DT::datatable(golf_scrs[order(pts_golf, decreasing = T),.(name, pts = pts_golf)])
 ```
