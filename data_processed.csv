@@ -1,13 +1,16 @@
 name,prob,bytes,valid,seq,pts,penalty
-Michael Jones,2,437,TRUE,1,0,8
-Yiqun,2,261,TRUE,2,0,8
-Jennivine,2,199,TRUE,3,0,8
-jin,2,637,TRUE,4,0,8
-Kale Miller,2,116,TRUE,5,0,8
-Kale Miller,2,46,TRUE,6,0,8
-feng,2,176,TRUE,7,0,8
-Osber,2,353,FALSE,8,0,8
-Andrew Martin,2,276,TRUE,9,0,8
+Michael Jones,2,437,TRUE,1,0,10
+Yiqun,2,261,TRUE,2,0,10
+Jennivine,2,199,TRUE,3,0,10
+jin,2,637,TRUE,4,0,10
+Kale Miller,2,116,TRUE,5,0,10
+Kale Miller,2,46,TRUE,6,0,10
+feng,2,176,TRUE,7,0,10
+Osber,2,353,FALSE,8,0,10
+Andrew Martin,2,276,TRUE,9,0,10
 Jennivine,1,1513,TRUE,10,0,2
-Osber,2,399,TRUE,11,0,8
+Osber,2,399,TRUE,11,0,10
 Michael Jones,1,3884,TRUE,12,0,2
+dtpearl,2,131,TRUE,13,0,10
+Jennivine,3,206,TRUE,14,0,1
+Yuchen,2,329,TRUE,15,0,10
