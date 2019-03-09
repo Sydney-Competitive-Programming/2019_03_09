@@ -23,7 +23,7 @@ library(magrittr)
 library(dplyr)
 df = data.table()
 
-num_attendees = 13
+num_attendees = 15
 
 add_solution <- function(df, name, prob, bytes, valid) {
   rbindlist(
@@ -36,7 +36,10 @@ add_solution <- function(df, name, prob, bytes, valid) {
 df %<>% 
   add_solution("Michael Jones", 2, 437,T) %>% 
   add_solution("Yiqun", 2, 261, T) %>% 
-  add_solution("Jennivine", 2, 199, T)
+  add_solution("Jennivine", 2, 199, T) %>% 
+  add_solution("jin", 2, 637, T) %>% 
+  add_solution("Kale Miller", 2, 116, T) %>% 
+  add_solution("Kale Miller", 2, 46, T)
 
 df[,seq := 1:.N]
 
@@ -46,15 +49,19 @@ df[, penalty := n_distinct(name), .(prob)]
 data.table::fwrite(df, "data_processed.csv")
 ```
 
-```{r logic2, echo=FALSE}
+```{r logic2, echo=FALSE, message=FALSE, warning=FALSE}
 #
 score_submission <- function(probn) {
   df2 = copy(df[prob == probn & valid == T,])
 
-  df2[order(seq), placing_penaly := 1:.N]
+  # remove duplicates
+  df2[,min_seq := min(seq), name]
   
-  df2[, pts := 2*num_attendees - penalty + 1 - placing_penaly]
-  df2
+  df3 = df2[min_seq == seq,]
+  
+  df3[order(seq), placing_penaly := 1:.N]
+  df3[, pts := 2*num_attendees - penalty + 1 - placing_penaly]
+  df3
 }
 
 df_summ = purrr::map_dfr(1:3, ~{
@@ -65,7 +72,7 @@ df_summ2 = df_summ[,.(pts = sum(pts)), name]
 
 data.table::fwrite(df_summ2, "data_processed_summ.csv")
 
-DT::datatable(df_summ2)
+DT::datatable(df_summ2[order(pts, decreasing=T)])
 ```
 
 # Points by rank
