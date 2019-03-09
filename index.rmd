@@ -36,7 +36,8 @@ df %<>%
   add_solution("Osber", 2, 353, F) %>% 
   add_solution("Andrew Martin", 2, 276, T) %>% 
   add_solution("Jennivine", 1, 1513, T) %>% 
-  add_solution("Osber", 2, 399, T)
+  add_solution("Osber", 2, 399, T) %>% 
+  add_solution("Michael Jones", 1, 3884, T)
 
 df[,seq := 1:.N]
 
@@ -107,15 +108,18 @@ DT::datatable(df_summ4[order(pts, decreasing = T), ])
 
 ```{r plot, echo=FALSE, dependson=df_summ2, cache=FALSE}
 library(data.table)
-barplot(df_summ2$pts, names.arg = df_summ2$name, cex.names = 0.7)
+df_summ5 = df_summ4[order(pts, decreasing = T), ]
+barplot(df_summ5$pts, names.arg = df_summ5$name, cex.names = 0.6)
 ```
 
 # Points from first to submit
 ```{r echo=FALSE}
-DT::datatable(df_summ2)
+DT::datatable(df_summ2[,.(pts=sum(pts)), name][order(pts, decreasing = T)])
 ```
 
 # Points from golf
 ```{r echo=FALSE}
-DT::datatable(golf_scrs[,.(name, pts_golf = sum(pts_golf)), name])
+DT::datatable(golf_scrs[,.(name, pts_golf = sum(pts_golf)), name][
+  order(pts_golf, decreasing = T),
+])
 ```
