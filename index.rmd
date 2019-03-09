@@ -33,9 +33,10 @@ df %<>%
   add_solution("Kale Miller", 2, 116, T) %>% 
   add_solution("Kale Miller", 2, 46, T) %>% 
   add_solution("feng", 2, 176, T) %>% 
-  add_solution("Osber", 2, 353, T) %>% 
+  add_solution("Osber", 2, 353, F) %>% 
   add_solution("Andrew Martin", 2, 276, T) %>% 
-  add_solution("Jennivine", 1, 1513, T)
+  add_solution("Jennivine", 1, 1513, T) %>% 
+  add_solution("Osber", 2, 399, T)
 
 df[,seq := 1:.N]
 
