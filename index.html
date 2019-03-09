@@ -2615,15 +2615,8 @@ $(document).ready(function () {
 
 <div id="the-leaderboard" class="section level2">
 <h2>The leaderboard</h2>
-<pre class="r"><code>golf_scrs2 = golf_scrs[,.(name, pts = pts_golf)]
-
-df_summ3 = rbindlist(list(df_summ2, golf_scrs2), fill = T, use.names = T)
-
-df_summ4 = df_summ3[,.(pts = sum(pts)), name]
-
-DT::datatable(df_summ4[order(pts, decreasing = T), ])</code></pre>
-<div id="htmlwidget-c9b6d9b3a1c86e9811c5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c9b6d9b3a1c86e9811c5">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Yiqun","Jennivine","Kale Miller","Michael Jones","feng","jin","Osber"],[42,42,42,41,40,37,36]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>pts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-41ba55c139b6deea81ce" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-41ba55c139b6deea81ce">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Yiqun","Jennivine","Kale Miller","Michael Jones","feng","jin","Osber"],[42,42,42,41,40,37,36]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>pts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="points-by-rank" class="section level1">
 <h1>Points by rank</h1>
@@ -2631,13 +2624,13 @@ DT::datatable(df_summ4[order(pts, decreasing = T), ])</code></pre>
 </div>
 <div id="points-from-first-to-submit" class="section level1">
 <h1>Points from first to submit</h1>
-<div id="htmlwidget-1f9298d1307e3a148ef7" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1f9298d1307e3a148ef7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Michael Jones","Yiqun","Jennivine","jin","Kale Miller","feng","Osber"],[23,22,21,20,19,18,17]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>pts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bb051d16e73f8dc8e146" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bb051d16e73f8dc8e146">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Michael Jones","Yiqun","Jennivine","jin","Kale Miller","feng","Osber"],[23,22,21,20,19,18,17]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>pts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="points-from-golf" class="section level1">
 <h1>Points from golf</h1>
-<div id="htmlwidget-18f2cd05285e9e184e53" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-18f2cd05285e9e184e53">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Kale Miller","feng","Jennivine","Yiqun","Osber","Michael Jones","jin"],[23,22,21,20,19,18,17]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>pts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e478843659074a19c0c7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e478843659074a19c0c7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Kale Miller","feng","Jennivine","Yiqun","Osber","Michael Jones","jin"],[23,22,21,20,19,18,17]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>pts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 
