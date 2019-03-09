@@ -9,14 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## The leaderboard
-
-
-```{r summ1, message=FALSE, warning=FALSE, cache=TRUE, dependson=df, include=FALSE, paged.print=FALSE}
-library(data.table)
-library(dplyr)
-df = data.table::fread("data.csv")
-```
-
 ```{r add_data, include=FALSE}
 library(data.table)
 library(magrittr)
@@ -42,7 +34,8 @@ df %<>%
   add_solution("Kale Miller", 2, 46, T) %>% 
   add_solution("feng", 2, 176, T) %>% 
   add_solution("Osber", 2, 353, T) %>% 
-  add_solution("Andrew Martin", 2, 276, T)
+  add_solution("Andrew Martin", 2, 276, T) %>% 
+  add_solution("Jennivine", 1, 1513, T)
 
 df[,seq := 1:.N]
 
@@ -75,6 +68,8 @@ df_summ2 = df_summ[,.(pts = sum(pts)), name]
 
 data.table::fwrite(df_summ2, "data_processed_summ.csv")
 ```
+
+
 ```{r code_golf, include=FALSE}
 golf_score = function(probn) {
   df_g = df[(valid == T) & (prob == probn), ]
@@ -121,5 +116,5 @@ DT::datatable(df_summ2)
 
 # Points from golf
 ```{r echo=FALSE}
-DT::datatable(golf_scrs[order(pts_golf, decreasing = T),.(name, pts = pts_golf)])
+DT::datatable(golf_scrs[,.(name, pts_golf = sum(pts_golf)), name])
 ```
