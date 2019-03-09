@@ -44,7 +44,10 @@ df %<>%
   add_solution("Kale Miller", 3, 1079, T) %>% 
   add_solution("feng", 3, 1095, T) %>% 
   add_solution("ZJ",2,60,T) %>% 
-  add_solution("ZJ",2,53,T)
+  add_solution("ZJ",2,53,T) %>% 
+  add_solution("Michael Jones",3,8805,T) %>% 
+  add_solution("feng", 2, 636, T) %>% 
+  add_solution("Yiqun", 3, 1073, T)
 
 df[,seq := 1:.N]
 
