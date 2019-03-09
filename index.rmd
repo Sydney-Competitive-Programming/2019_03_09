@@ -41,7 +41,8 @@ df %<>%
   add_solution("Kale Miller", 2, 116, T) %>% 
   add_solution("Kale Miller", 2, 46, T) %>% 
   add_solution("feng", 2, 176, T) %>% 
-  add_solution("Osber", 2, 353, T)
+  add_solution("Osber", 2, 353, T) %>% 
+  add_solution("Andrew Martin", 2, 276, T)
 
 df[,seq := 1:.N]
 
@@ -110,7 +111,7 @@ DT::datatable(df_summ4[order(pts, decreasing = T), ])
 
 ```{r plot, echo=FALSE, dependson=df_summ2, cache=FALSE}
 library(data.table)
-barplot(df_summ2$pts, names.arg = df_summ2$name)
+barplot(df_summ2$pts, names.arg = df_summ2$name, cex.axis = 0.3, angle = 45)
 ```
 
 # Points from first to submit
