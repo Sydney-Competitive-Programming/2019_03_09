@@ -111,7 +111,7 @@ DT::datatable(df_summ4[order(pts, decreasing = T), ])
 
 ```{r plot, echo=FALSE, dependson=df_summ2, cache=FALSE}
 library(data.table)
-barplot(df_summ2$pts, names.arg = df_summ2$name, cex.axis = 0.3, angle = 45)
+barplot(df_summ2$pts, names.arg = df_summ2$name, cex.names = 0.7)
 ```
 
 # Points from first to submit
